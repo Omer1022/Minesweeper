@@ -1,6 +1,6 @@
 "use strict";
 
-const MINE = "💣";
+const MINE = "💥";
 const FLAG = "🚩";
 
 var gBoard;
@@ -16,14 +16,17 @@ var gGame = {
     minesShown: 0,
 };
 var gLives = 3;
-var gTimerIntervalId;
+var gTimerInterval;
 var gClickCount = 0;
+var gBestScoreBeginner;
+var gBestScoreMedium;
+var gBestScoreExpert;
 
 
 function init() {
     gBoard = createBoard(gLevel.size);
     renderBoard(gBoard);
-    clearInterval(gTimerIntervalId);
+    clearInterval(gTimerInterval);
     gGame.isOn = true;
     gGame.minesShown = 0;
     gGame.shownCount = 0;
@@ -66,11 +69,10 @@ function mouseDown(rbc, elCell, i, j) {
 
     if (gClickCount === 1) {
         gGame.isOn = true;
-        gTimerIntervalId = setInterval(timer, 1000);
+        gTimerInterval = setInterval(timer, 1000);
         gBoard[i][j].isFirstClick = true;
         setMines();
     }
-
     if (rightButtonClicked(rbc)) {
         if (!gBoard[i][j].isMarked) {
             cellMarked(elCell, i, j);
@@ -95,13 +97,11 @@ function mineClicked(elCell) {
     if (gLives === 0) {
         var allMines = revealMines();
         for (var i = 0; i < allMines.length; i++) {
-            var elMine = document.getElementById(
-                `cell-${allMines[i].i}-${allMines[i].j}`
-            );
+            var elMine = document.getElementById(`cell-${allMines[i].i}-${allMines[i].j}`);
             elMine.style.backgroundColor = "white";
             elMine.innerText = MINE;
         }
-        clearInterval(gTimerIntervalId);
+        clearInterval(gTimerInterval);
         gameStatus("lose");
         gGame.isOn = false;
     }
@@ -136,9 +136,9 @@ function unCellMarked(elCell, i, j) {
 function updateLives() {
     var numLives = document.querySelector(".lives span");
     if (gLives === 3) numLives.innerText = "❤️❤️❤️";
-    if (gLives === 2) numLives.innerText = "❤️❤️";
-    if (gLives === 1) numLives.innerText = "❤️";
-    if (gLives === 0) numLives.innerText = "";
+    if (gLives === 2) numLives.innerText = "❤️❤️🤍";
+    if (gLives === 1) numLives.innerText = "❤️🤍🤍";
+    if (gLives === 0) numLives.innerText = "🤍🤍🤍";
 }
 
 
@@ -167,10 +167,31 @@ function checkGameOver() {
 
 function gameWon() {
     gGame.isOn = false;
-    clearInterval(gTimerIntervalId);
+    clearInterval(gTimerInterval);
     var score = gGame.secsPassed;
     var elTimer = document.querySelector(".timer");
     elTimer.innerText = `Score: ${score}`;
+    var bestScoreBeginner = document.querySelector('.bestscore .beginner-score')
+    var bestScoreMedium = document.querySelector('.bestscore .medium-score')
+    var bestScoreExpert = document.querySelector('.bestscore .expert-score')
+    if (gLevel.size === 4) {
+        if (!gBestScoreBeginner || score < gBestScoreBeginner) {
+            gBestScoreBeginner = score
+            bestScoreBeginner.innerText = gBestScoreBeginner
+        }
+    }
+    if (gLevel.size === 8) {
+        if (!gBestScoreMedium || score < gBestScoreMedium) {
+            gBestScoreMedium = score
+            bestScoreMedium.innerText = gBestScoreMedium
+        }
+    }
+    if (gLevel.size === 12) {
+        if (!gBestScoreExpert || score < gBestScoreExpert) {
+            gBestScoreExpert = score
+            bestScoreExpert.innerText = gBestScoreExpert
+        }
+    }
     gameStatus("win");
 }
 
@@ -222,5 +243,5 @@ function checkNeighbors(pos) {
 function timer() {
     gGame.secsPassed++;
     var elTimer = document.querySelector(".timer");
-    elTimer.innerText = "Timer: " + gGame.secsPassed;
+    elTimer.innerText = "Time: " + gGame.secsPassed;
 }

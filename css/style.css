@@ -1,6 +1,5 @@
 body {
     background-image: url(../img/1.jpg);
-    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
@@ -32,17 +31,39 @@ h2 {
 }
 
 h3 {
+    display: inline-block;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
+    margin: 20px;
 }
 
 h4 {
     display: inline-block;
-    color: rgb(255, 255, 255);
+    color: rgb(255, 0, 0);
     text-align: center;
+    font-size: 22px;
+    margin: 20px;
+}
+
+.bestscore {
+    -webkit-text-stroke: 1px;
+    color: black;
+    font-family: sans-serif;
+    font-size: 17px;
+    position: absolute;
+    width: 150px;
+    height: 140px;
+    border: 3px dashed whitesmoke;
+    margin: 50px;
+    line-height: 200%;
+}
+
+.bestscore .scores {
+    color: rgb(68, 20, 20);
     font-size: 20px;
-    font-weight: bold;
+    font-style: italic;
+    border-bottom: 2px solid #000000;
 }
 
 table {
@@ -61,7 +82,7 @@ td {
 }
 
 td:hover {
-    transition: 1s;
+    transition: 0.5s;
     background-color: gray;
 }
 
@@ -71,14 +92,14 @@ button {
     padding: 10px 5px;
     font-size: 15px;
     width: 180px;
-    margin: 10px;
+    margin: 15px;
 }
 
 button:hover {
     cursor: pointer;
     background-color: black;
     color: white;
-    transition: 0.3s;
+    transition: 0.5s;
     border: none;
 }
 
@@ -86,11 +107,8 @@ button:hover {
     display: inline-block;
 }
 
-.inline2 {
-    display: inline-block;
-}
-
 footer {
+    -webkit-text-stroke: 1px;
     position: fixed;
     left: 0;
     bottom: 0;

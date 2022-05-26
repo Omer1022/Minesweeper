@@ -16,11 +16,11 @@
     <button class="button" onclick="setLevel(4,2)">Beginner</button>
     <button class="button" onclick="setLevel(8,12)">Medium</button>
     <button class="button" onclick="setLevel(12,30)">Expert</button>
-    <h3 class="lives">Lives: <span></span></h3>
   </div>
 
   <div class="inline2">
-    <h4 class="timer"></h4>
+    <h3 class="lives">Lives: <span></span></h3>
+    <h4 class="timer">Time: 0</h4>
     <button class="status" onclick="init()"></button>
   </div>
 
@@ -28,6 +28,12 @@
     <table cellpadding="5">
       <tbody class="board"></tbody>
     </table>
+  </div>
+
+  <div style="position:fixed; left:45px; top: 45px;" class="bestscore"><span class="scores">Best Scores: </span>
+    <br>Beginner: <span class="beginner-score"></span>
+    <br>Medium: <span class="medium-score"></span>
+    <br>Expert: <span class="expert-score"></span>
   </div>
 
   <footer>
