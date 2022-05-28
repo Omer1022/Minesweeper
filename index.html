@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minesweeper Game</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Minesweeper Game</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
+  <body onload="init()">
+    <h1>Minesweeper Game</h1>
+    <h2>Choose Level</h2>
+    <div class="inline">
+      <button class="button" onclick="setLevel(4,2)">Beginner</button>
+      <button class="button" onclick="setLevel(8,12)">Medium</button>
+      <button class="button" onclick="setLevel(12,30)">Expert</button>
+    </div>
 
-<body onload="init()">
-  <h1>Minesweeper Game</h1>
-  <h2>Choose Level</h2>
-  <div class="inline">
-    <button class="button" onclick="setLevel(4,2)">Beginner</button>
-    <button class="button" onclick="setLevel(8,12)">Medium</button>
-    <button class="button" onclick="setLevel(12,30)">Expert</button>
-  </div>
+    <div class="inline2">
+      <button class="status" onclick="init()"></button>
+      <h3 class="lives">Lives: <span></span></h3>
+      <h4 class="timer">Time: 0</h4>
+      <button class="safe-click" onclick="safeClick(this)">
+        <span class="safe-title">Safe Click</span><br />Clicks Left:
+        <span class="num-safe">3</span>
+      </button>
+    </div>
 
-  <div class="inline2">
-    <h3 class="lives">Lives: <span></span></h3>
-    <h4 class="timer">Time: 0</h4>
-    <button class="status" onclick="init()"></button>
-  </div>
+    <div class="container">
+      <table cellpadding="5">
+        <tbody class="board"></tbody>
+      </table>
+    </div>
 
-  <div class="container">
-    <table cellpadding="5">
-      <tbody class="board"></tbody>
-    </table>
-  </div>
+    <div style="position: fixed; left: 45px; top: 45px" class="bestscore">
+      <span class="scores">Best Scores: </span> <br />Beginner:
+      <span class="beginner-score"></span> <br />Medium:
+      <span class="medium-score"></span> <br />Expert:
+      <span class="expert-score"></span>
+    </div>
 
-  <div style="position:fixed; left:45px; top: 45px;" class="bestscore"><span class="scores">Best Scores: </span>
-    <br>Beginner: <span class="beginner-score"></span>
-    <br>Medium: <span class="medium-score"></span>
-    <br>Expert: <span class="expert-score"></span>
-  </div>
+    <footer>
+      <p>Omer Dahan © 2022</p>
+    </footer>
 
-  <footer>
-    <p>Omer Dahan © 2022</p>
-  </footer>
-
-  <script src="js/game.js"></script>
-  <script src="js/board.js"></script>
-  <script src="js/mines.js"></script>
-  <script src="js/util.js"></script>
-</body>
-
+    <script src="js/game.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/mines.js"></script>
+    <script src="js/util.js"></script>
+  </body>
 </html>
